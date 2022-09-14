@@ -19,6 +19,7 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Enter()
     {
+        stateMachine.CurrentWeapon.gameObject.SetActive(true);
         direction = CalculateMovement();
 
         //stateMachine.Weapon.SetAttack(attack.Damage, attack.Knockback);
@@ -56,7 +57,10 @@ public class PlayerAttackingState : PlayerBaseState
             FaceMovementDirection(direction, deltaTime);
     }
 
-    public override void Exit() { }
+    public override void Exit() 
+    { 
+        stateMachine.CurrentWeapon.gameObject.SetActive(false);
+    }
 
     private void TryApplyForce()
     {

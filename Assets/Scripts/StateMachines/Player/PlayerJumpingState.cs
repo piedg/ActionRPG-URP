@@ -8,7 +8,6 @@ public class PlayerJumpingState : PlayerBaseState
 
     private const float CrossFadeDuration = 0.1f;
 
-    Vector3 momentum;
     public PlayerJumpingState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -16,15 +15,15 @@ public class PlayerJumpingState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.ForceReceiver.Jump(stateMachine.JumpForce);
-        momentum = stateMachine.Controller.velocity;
-        momentum.y = 0f;
-
+     
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash, CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
     {
-        Move(momentum, deltaTime);
+        Vector3 movement = CalculateMovement();
+
+        Move(movement * (stateMachine.MovementSpeed), deltaTime);
 
         if (stateMachine.Controller.velocity.y <= 0f)
         {

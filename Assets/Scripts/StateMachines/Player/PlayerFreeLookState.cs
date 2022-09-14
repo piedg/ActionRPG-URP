@@ -10,9 +10,7 @@ public class PlayerFreeLookState : PlayerBaseState
     private const float AnimatorDumpTime = 0.1f;
     private const float CrossFadeDuration = 0.3f;
 
-    public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine)
-    {
-    }
+    public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
@@ -31,7 +29,12 @@ public class PlayerFreeLookState : PlayerBaseState
         {
             stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0, movement));
             return;
-        } 
+        }
+        if (stateMachine.Controller.velocity.y <= 0)
+        {
+            //stateMachine.SwitchState(new PlayerFallingState(stateMachine));
+            //return;
+        }
 
         Move(movement * stateMachine.MovementSpeed, deltaTime);
 
@@ -53,9 +56,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     private void OnJump()
     {
-        Debug.Log("Jump!");
         stateMachine.SwitchState(new PlayerJumpingState(stateMachine));
     }
-
 
 }

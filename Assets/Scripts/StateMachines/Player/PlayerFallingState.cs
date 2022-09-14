@@ -7,10 +7,10 @@ public class PlayerFallingState : PlayerBaseState
     private readonly int FallHash = Animator.StringToHash("Falling");
 
     private const float CrossFadeDuration = 0.1f;
-    public PlayerFallingState(PlayerStateMachine stateMachine) : base(stateMachine)
-    {
 
-    }
+    Vector3 momentum;
+
+    public PlayerFallingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
@@ -19,9 +19,10 @@ public class PlayerFallingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        Vector3 movement = CalculateMovement();
+        momentum = stateMachine.Controller.velocity;
+        momentum.y = 0f;
 
-        Move(movement * (stateMachine.MovementSpeed), deltaTime);
+        Move(momentum, deltaTime);
 
         if (stateMachine.Controller.isGrounded)
         {
