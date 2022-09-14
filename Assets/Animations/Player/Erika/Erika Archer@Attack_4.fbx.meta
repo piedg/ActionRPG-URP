@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: f92186be59685014a80c489d21962363
+guid: 2356b718617423b40ac091650246fdf7
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Sword And Shield Attack (1)
+    second: Sword And Shield Slash (1)
   - first:
-      74: -4399273342987864829
-    second: Attack_3
+      74: -7159147207538092535
+    second: Attack_4
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -21,7 +21,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
-    motionNodeName: 
+    motionNodeName: <Root Transform>
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
@@ -39,11 +39,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Attack_3
+      name: Attack_4
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 78
+      lastFrame: 146
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -51,7 +51,7 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 0
-      loopBlend: 1
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0

@@ -15,7 +15,6 @@ public class PlayerStateMachine : StateMachine
 
     [field: SerializeField, Header("Attack Settings")] public Attack[] Attacks { get; private set; }
 
-
     public Transform MainCameraTransform { get; private set; }
 
 
@@ -28,6 +27,7 @@ public class PlayerStateMachine : StateMachine
         SwitchState(new PlayerFreeLookState(this));
 
     }
+
     /*
     private void OnEnable()
     {
