@@ -8,7 +8,6 @@ public class PlayerFallingState : PlayerBaseState
 
     private const float CrossFadeDuration = 0.1f;
 
-    Vector3 momentum;
 
     public PlayerFallingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
@@ -19,18 +18,22 @@ public class PlayerFallingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        momentum = stateMachine.Controller.velocity;
-        momentum.y = 0f;
-
-        Move(momentum, deltaTime);
+        if (stateMachine.InputManager.IsAttacking)
+        {
+            stateMachine.SwitchState(new PlayerJumpAttackState(stateMachine));
+            return;
+        }
 
         if (stateMachine.Controller.isGrounded)
         {
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+            return;
         }
 
+        Vector3 movement = CalculateMovement();
 
-        //FaceOnTarget();
+        Move(movement * (stateMachine.MovementSpeed), deltaTime);
+
     }
 
     public override void Exit() { }

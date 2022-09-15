@@ -25,15 +25,17 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         Vector3 movement = CalculateMovement();
 
-        if (stateMachine.InputManager.IsAttacking)
+
+        /*if (!stateMachine.Controller.isGrounded)
+        {
+            stateMachine.SwitchState(new PlayerFallingState(stateMachine));
+            return;
+        } */
+
+        if (stateMachine.InputManager.IsAttacking && stateMachine.Controller.isGrounded)
         {
             stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0, movement));
             return;
-        }
-        if (stateMachine.Controller.velocity.y <= 0)
-        {
-            //stateMachine.SwitchState(new PlayerFallingState(stateMachine));
-            //return;
         }
 
         Move(movement * stateMachine.MovementSpeed, deltaTime);

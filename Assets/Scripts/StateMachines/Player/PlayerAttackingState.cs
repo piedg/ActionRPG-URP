@@ -28,9 +28,7 @@ public class PlayerAttackingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        Move(direction, deltaTime);
-
-       
+        Move(deltaTime);
 
         float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
 
@@ -58,7 +56,7 @@ public class PlayerAttackingState : PlayerBaseState
     }
 
     public override void Exit() 
-    { 
+    {
         stateMachine.CurrentWeapon.gameObject.SetActive(false);
     }
 

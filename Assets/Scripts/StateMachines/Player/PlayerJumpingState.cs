@@ -8,33 +8,35 @@ public class PlayerJumpingState : PlayerBaseState
 
     private const float CrossFadeDuration = 0.1f;
 
-    public PlayerJumpingState(PlayerStateMachine stateMachine) : base(stateMachine)
-    {
-    }
+
+    public PlayerJumpingState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
     public override void Enter()
     {
         stateMachine.ForceReceiver.Jump(stateMachine.JumpForce);
-     
         stateMachine.Animator.CrossFadeInFixedTime(JumpHash, CrossFadeDuration);
     }
 
     public override void Tick(float deltaTime)
     {
-        Vector3 movement = CalculateMovement();
+        if (stateMachine.InputManager.IsAttacking)
+        {
+            stateMachine.SwitchState(new PlayerJumpAttackState(stateMachine));
+            return;
+        }
+        Vector3 momentum;
+        momentum = stateMachine.Controller.velocity;
+        momentum.y = 0f;
 
-        Move(movement * (stateMachine.MovementSpeed), deltaTime);
-
+        Move(momentum, deltaTime);
         if (stateMachine.Controller.velocity.y <= 0f)
         {
             stateMachine.SwitchState(new PlayerFallingState(stateMachine));
             return;
         }
 
-       // FaceOnTarget();
+        
     }
 
     public override void Exit() { }
-
-
 }

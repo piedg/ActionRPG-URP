@@ -25,9 +25,9 @@ public class PlayerStateMachine : StateMachine
         Cursor.visible = false;
 
         CurrentWeapon.gameObject.SetActive(false);
+
         MainCameraTransform = Camera.main.transform;
         SwitchState(new PlayerFreeLookState(this));
-
     }
 
     /*
@@ -35,7 +35,6 @@ public class PlayerStateMachine : StateMachine
     {
         Health.OnTakeDamage += HandleTakeDamage;
         Health.OnDie += HandleDie;
-
     }
 
     private void OnDisable()
