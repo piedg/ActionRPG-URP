@@ -21,9 +21,11 @@ public class PlayerJumpingState : PlayerBaseState
     {
         if (stateMachine.InputManager.IsAttacking)
         {
+            Debug.Log("SOno qui");
             stateMachine.SwitchState(new PlayerJumpAttackState(stateMachine));
             return;
         }
+
         Vector3 momentum;
         momentum = stateMachine.Controller.velocity;
         momentum.y = 0f;
@@ -34,8 +36,6 @@ public class PlayerJumpingState : PlayerBaseState
             stateMachine.SwitchState(new PlayerFallingState(stateMachine));
             return;
         }
-
-        
     }
 
     public override void Exit() { }

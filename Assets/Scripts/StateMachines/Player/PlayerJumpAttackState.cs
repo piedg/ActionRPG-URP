@@ -13,15 +13,16 @@ public class PlayerJumpAttackState : PlayerBaseState
     {
         stateMachine.ForceReceiver.Jump(-stateMachine.JumpForce);
         stateMachine.CurrentWeapon.gameObject.SetActive(true);
-        //stateMachine.Animator.CrossFadeInFixedTime(JumpAttackHash, CrossFadeDuration); on jump state finish have an issue
-        stateMachine.Animator.Play(JumpAttackHash); //avoid on JumpState issue
+        stateMachine.Animator.CrossFadeInFixedTime(JumpAttackHash, CrossFadeDuration);// on jump state finish have an issue
+        //stateMachine.Animator.Play(JumpAttackHash); //avoid on JumpState issue
     }
 
     public override void Tick(float deltaTime)
     {
         Move(deltaTime);
+      
 
-        if(stateMachine.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f) { return; }
+        if (stateMachine.Animator.IsInTransition(0) || stateMachine.Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f) { return; }
 
         stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
     }
