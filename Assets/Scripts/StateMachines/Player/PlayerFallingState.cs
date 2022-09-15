@@ -32,7 +32,7 @@ public class PlayerFallingState : PlayerBaseState
 
         Vector3 movement = CalculateMovement();
 
-        Move(movement * (stateMachine.MovementSpeed), deltaTime);
+        Move(movement * (stateMachine.MovementSpeed / 2), deltaTime);
 
     }
 

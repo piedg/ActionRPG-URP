@@ -46,8 +46,9 @@ public class PlayerFreeLookState : PlayerBaseState
             return;
         } 
 
-        stateMachine.Animator.SetFloat(FreeLookSpeedHash, stateMachine.Controller.velocity.magnitude, AnimatorDumpTime, deltaTime);
+   
 
+        stateMachine.Animator.SetFloat(FreeLookSpeedHash, stateMachine.Controller.velocity.magnitude, AnimatorDumpTime, deltaTime);
         FaceMovementDirection(movement, deltaTime);
     }
 
