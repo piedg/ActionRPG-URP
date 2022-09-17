@@ -22,7 +22,7 @@ public class PlayerAttackingState : PlayerBaseState
         stateMachine.CurrentWeapon.gameObject.SetActive(true);
         direction = CalculateMovement();
 
-        //stateMachine.Weapon.SetAttack(attack.Damage, attack.Knockback);
+        stateMachine.Weapon.SetAttack(attack.Damage, attack.Knockback);
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
     }
 

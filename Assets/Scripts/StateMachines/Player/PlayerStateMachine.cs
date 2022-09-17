@@ -14,6 +14,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float JumpForce { get; private set; }
 
     [field: SerializeField, Header("Attack Settings")] public Attack[] Attacks { get; private set; }
+    [field: SerializeField, Header("Attack Settings")] public WeaponDamage Weapon { get; private set; }
     [field: SerializeField] public Transform CurrentWeapon { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
